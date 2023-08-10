@@ -10,32 +10,18 @@ using TMPro;
 namespace UI.InGame {
     public class InGameUIManager :MonoBehaviour {
 
-        InGameManager _inGameManager;
+        private InGameManager _inGameManager;
 
         [Header("MenuCanvas")]
         [SerializeField] MenuCanvas menuCanvas;
         [Header("InGameCanvas")]
         [SerializeField] InGameCanvas inGameCanvas;
 
-        private void Start() {
-            _inGameManager = FindObjectOfType<InGameManager>();
+        public void Init(InGameManager value) {
+            _inGameManager = value;
             if (!_inGameManager) {
-                UnityEngine.Debug.Log($"{this} has not found {nameof(_inGameManager)}");
+                UnityEngine.Debug.LogError($"{this} has not found {nameof(_inGameManager)}");
             }
-
-            if (_inGameManager.HasStarted)
-                Init();
-        }
-        private void Init() {
-
-            /*
-            openPauseMenuButton.onClick.AddListener(OnOpenPauseMenuClicked);
-            if (startGame != null) {
-                startGame.Open();
-                startGame.Init();
-            }
-            CoinInit();
-            */
             menuCanvas.Init(true);
             inGameCanvas.Init();
         }
@@ -48,26 +34,17 @@ namespace UI.InGame {
             menuCanvas.Open();
             inGameCanvas.Close();
         }
-        /*
+
+        public void ContinGameSwitcher(bool value) {
+            _inGameManager.HasStarted = value;
+        }
+       
         void OnOpenPauseMenuClicked() {
             FreezeGame();
         }
 
-        public void GameOver(string text) {
-            gameOverUI.Open();
-            gameOverUI.SetGameOverText(text);
-            FreezeGame();
-        }
-        private void CoinInit() {
-            coin = 0;
-            cointText.text = coin.ToString();
-        }
         public void FreezeGame() => _inGameManager.FreezeGame();
         public void UnfreezeGame() => _inGameManager.UnfreezeGame();
-        public void PlusCoin() {
-            coin++;
-            cointText.text = coin.ToString();
-        }
-        */
+       
     }
 }

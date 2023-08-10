@@ -1,5 +1,5 @@
 using UnityEngine;
-using Game.Characters.Components;
+using Game.Components;
 namespace Game.Characters.Player {
     public class PlayerMovement :Movement {
         private Vector3 directionVectorFromJoystick;

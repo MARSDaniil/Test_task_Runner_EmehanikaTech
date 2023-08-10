@@ -10,8 +10,13 @@ namespace UI.MenuUI{
 		public override void Init(bool isOpen = false) {
 			base.Init(isOpen);
 			menuCanvas = GetComponentInParent<MenuCanvas>();
-			startGameButton.onClick.AddListener(menuCanvas.inGameUIManager.OpenGame);
+			startGameButton.onClick.AddListener(StartGameMovement);
 		}
-		
+
+        private void StartGameMovement() {
+			menuCanvas.inGameUIManager.OpenGame();
+			menuCanvas.inGameUIManager.UnfreezeGame();
+			menuCanvas.inGameUIManager.ContinGameSwitcher(true);
+		}
 	}
 }

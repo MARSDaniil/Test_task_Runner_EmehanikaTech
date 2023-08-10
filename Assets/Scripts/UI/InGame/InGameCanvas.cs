@@ -13,17 +13,16 @@ namespace UI.InGame {
         public override void Init(bool isOpen = false) {
             base.Init();
             inGameUIManager = GetComponentInParent<InGameUIManager>();
-            score.Init(true);
-            pauseButton.Init(true);
-            gameOverUI.Init();
-            pauseMenu.Init();
-            pauseMenu.Init();
+
+            SetInGameCanvas();
+            SetInitToChild();
         }
 
         public void OpenPauseMenu() {
             pauseMenu.Open();
             pauseButton.Close();
             score.Close();
+            inGameUIManager.FreezeGame();
         }
         public void ClosePauseMenu() {
             pauseMenu.Close();
@@ -34,6 +33,18 @@ namespace UI.InGame {
         public void CloseGame() {
             ClosePauseMenu();
             inGameUIManager.CloseGame();
+        }
+
+        private void SetInGameCanvas() {
+            pauseButton.inGameCanvas = this;
+            pauseMenu.inGameCanvas = this;
+        }
+        private void SetInitToChild() {
+            score.Init(true);
+            pauseButton.Init(true);
+            gameOverUI.Init();
+            pauseMenu.Init();
+            pauseMenu.Init();
         }
     }
 }

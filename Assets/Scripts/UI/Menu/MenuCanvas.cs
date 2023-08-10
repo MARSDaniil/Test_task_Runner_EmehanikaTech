@@ -7,7 +7,7 @@ namespace UI.MenuUI {
     public class MenuCanvas :MenuWindow {
         [SerializeField] StartGame startGame;
         [SerializeField] InfoPanel infoPanel;
-        public InGameUIManager inGameUIManager;
+        [HideInInspector] public InGameUIManager inGameUIManager;
         public override void Init(bool isOpen = false) {
             base.Init(isOpen);
             inGameUIManager = GetComponentInParent<InGameUIManager>();

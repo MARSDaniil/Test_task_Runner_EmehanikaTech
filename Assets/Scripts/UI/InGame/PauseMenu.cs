@@ -10,12 +10,16 @@ namespace UI.InGame {
         [SerializeField] Button restartGameButton;
         [SerializeField] Button settingButton;
 
-        InGameCanvas inGameCanvas;
+        [HideInInspector] public InGameCanvas inGameCanvas;
         public override void Init(bool isOpen = false) {
             base.Init(isOpen);
-            inGameCanvas = GetComponentInParent<InGameCanvas>();
-            continueGameButton.onClick.AddListener(inGameCanvas.ClosePauseMenu);
+            continueGameButton.onClick.AddListener(ContinueGame);
             menuButton.onClick.AddListener(inGameCanvas.CloseGame);
+        }
+
+        private void ContinueGame() {
+            inGameCanvas.ClosePauseMenu();
+            inGameCanvas.inGameUIManager.UnfreezeGame();
         }
     }
 }
