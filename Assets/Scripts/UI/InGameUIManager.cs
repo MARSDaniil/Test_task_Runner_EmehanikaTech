@@ -13,11 +13,9 @@ namespace UI.InGame {
         InGameManager _inGameManager;
 
         [Header("MenuCanvas")]
-        [SerializeField] StartGame startGame;
-        [SerializeField] InfoPanel infoPanel;
+        [SerializeField] MenuCanvas menuCanvas;
         [Header("InGameCanvas")]
-        [SerializeField] GameOverUI gameOverUI;
-        [SerializeField] Score score;
+        [SerializeField] InGameCanvas inGameCanvas;
 
         private void Start() {
             _inGameManager = FindObjectOfType<InGameManager>();
@@ -30,8 +28,6 @@ namespace UI.InGame {
         }
         private void Init() {
 
-
-
             /*
             openPauseMenuButton.onClick.AddListener(OnOpenPauseMenuClicked);
             if (startGame != null) {
@@ -40,12 +36,17 @@ namespace UI.InGame {
             }
             CoinInit();
             */
+            menuCanvas.Init(true);
+            inGameCanvas.Init();
+        }
 
-            startGame.Init(true);
-            infoPanel.Init(true);
-            gameOverUI.Init();
-            score.Init();
-
+        public void OpenGame() {
+            inGameCanvas.Open();
+            menuCanvas.Close();
+        }
+        public void CloseGame() {
+            menuCanvas.Open();
+            inGameCanvas.Close();
         }
         /*
         void OnOpenPauseMenuClicked() {

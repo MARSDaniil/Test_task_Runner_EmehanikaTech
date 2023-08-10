@@ -4,7 +4,8 @@ using UnityEngine;
 using UI.Common;
 namespace UI.InGame {
     public class Score :MenuWindow {
-        public void Init() {
+        public override void Init(bool isOpen = false) {
+            base.Init(isOpen);
         }
     }
 }
