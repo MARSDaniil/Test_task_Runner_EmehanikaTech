@@ -22,7 +22,7 @@ namespace Game.Spawn {
             }
             if (!freeObstacle) {
                 barriersList.Add(Instantiate(PrefabsOfBarriers[GenerateRandomNumOfList(PrefabsOfBarriers.Count)],
-                    startPosition.transform.position, Quaternion.identity, transform.parent));
+                    startPosition.transform.position, Quaternion.identity, this.transform.parent));
             }
         }
 
@@ -39,6 +39,7 @@ namespace Game.Spawn {
         private int GenerateRandomNumOfList(int lenghtOfList) => (Random.Range(0, lenghtOfList));
 
         public void ClearList() {
+            foreach (GameObject o in barriersList) Destroy(o);
             barriersList.Clear();
         }
 

@@ -12,4 +12,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 032cc047b7a1fb347947df881455052f, type: 3}
   m_Name: ObstacleConfig
   m_EditorClassIdentifier: 
-  speed: 0
+  speed: 2

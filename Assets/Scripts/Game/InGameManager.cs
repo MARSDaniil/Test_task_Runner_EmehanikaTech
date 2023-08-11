@@ -64,6 +64,10 @@ namespace Game {
             updateSpeed = true;
         }
         */
+        public void RestartLevel() {
+            _inGameUIManager.RestartLevel();
+            levelController.SetStartPosition();
+        }
     }
 }
 

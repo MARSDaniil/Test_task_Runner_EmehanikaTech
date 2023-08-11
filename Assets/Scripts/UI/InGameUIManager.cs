@@ -10,12 +10,12 @@ using TMPro;
 namespace UI.InGame {
     public class InGameUIManager :MonoBehaviour {
 
-        private InGameManager _inGameManager;
+        public InGameManager _inGameManager;
 
         [Header("MenuCanvas")]
         [SerializeField] MenuCanvas menuCanvas;
         [Header("InGameCanvas")]
-        [SerializeField] InGameCanvas inGameCanvas;
+        public InGameCanvas inGameCanvas;
 
         public void Init(InGameManager value) {
             _inGameManager = value;
@@ -39,12 +39,16 @@ namespace UI.InGame {
             _inGameManager.HasStarted = value;
         }
        
-        void OnOpenPauseMenuClicked() {
-            FreezeGame();
-        }
+       
 
         public void FreezeGame() => _inGameManager.FreezeGame();
         public void UnfreezeGame() => _inGameManager.UnfreezeGame();
-       
+        
+        public void RestartLevel() {
+            inGameCanvas.CloseGameOver();
+            inGameCanvas.RestartScore();
+            inGameCanvas.ClosePauseMenu();
+            UnfreezeGame();
+        }
     }
 }

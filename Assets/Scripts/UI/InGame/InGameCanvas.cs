@@ -32,6 +32,7 @@ namespace UI.InGame {
 
         public void CloseGame() {
             ClosePauseMenu();
+            gameOverUI.Close();
             inGameUIManager.CloseGame();
         }
 
@@ -46,5 +47,14 @@ namespace UI.InGame {
             pauseMenu.Init();
             pauseMenu.Init();
         }
-    }
+
+       
+        public void RestartScore() {
+            score.StartFire();
+        }
+        public void UnfreezeScore() => score.ChangeScore(true);
+
+        public void CloseGameOver() =>  gameOverUI.Close();
+
+}
 }

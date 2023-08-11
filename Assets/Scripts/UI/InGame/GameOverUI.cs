@@ -6,7 +6,6 @@ namespace UI.InGame {
        
         public override void Init(bool isOpen = false) {
             base.Init(isOpen);
-
         } 
     }
 }

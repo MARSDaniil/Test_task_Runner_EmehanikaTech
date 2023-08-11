@@ -8,11 +8,12 @@ namespace Game.Obstacle {
     public class ObstacleMovement :Movement {
         public float extremeCoordinatsX = -20f;
         [SerializeField] ObstacleConfig obstacleConfig;
+        public Vector3 direction;
         private void Awake() {
             Init();
         }
         private void Init() {
-            SetDirection(new Vector3(-1, 0, 0));
+            SetDirection(direction);
             Speed = obstacleConfig.speed;
         }
 
@@ -22,6 +23,6 @@ namespace Game.Obstacle {
             }
         }
 
-        public void SetSpeed(float value) => Speed = value;
+        //public void SetSpeed(float value) => Speed = value;
     }
 }

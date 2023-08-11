@@ -15,11 +15,16 @@ namespace UI.InGame {
             base.Init(isOpen);
             continueGameButton.onClick.AddListener(ContinueGame);
             menuButton.onClick.AddListener(inGameCanvas.CloseGame);
+            restartGameButton.onClick.AddListener(RestartLevel);
         }
 
         private void ContinueGame() {
             inGameCanvas.ClosePauseMenu();
+            inGameCanvas.UnfreezeScore();
             inGameCanvas.inGameUIManager.UnfreezeGame();
+        }
+        private void RestartLevel() {
+            inGameCanvas.inGameUIManager._inGameManager.RestartLevel();
         }
     }
 }
