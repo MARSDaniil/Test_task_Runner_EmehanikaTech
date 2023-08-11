@@ -50,6 +50,7 @@ namespace UI.InGame {
             gameOverUI.Open();
             pauseButton.Close();
             score.Close();
+            gameOverUI.SetRecordScore();
             inGameUIManager.FreezeGame();
         }
         
@@ -63,5 +64,8 @@ namespace UI.InGame {
 
         public void MinusScore() => score.MinusFire();
         public void PlusScore() => score.PlusFire();
+
+        public void SetScore(int value) => gameOverUI.SetCurrScore(value);
+
     }
 }

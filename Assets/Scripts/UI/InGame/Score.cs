@@ -13,10 +13,13 @@ namespace UI.InGame {
         public int currentFireScore = 3;
         public List<GameObject> fireList;
         [SerializeField] InGameCanvas inGameCanvas;
+
+        int maxScore;
         public override void Init(bool isOpen = false) {
             base.Init(isOpen);
             scoreText.text = score.ToString();
             StartFire();
+            maxScore = PlayerPrefs.GetInt("MaxScore");
         }
 
         private void Update() {
@@ -26,7 +29,12 @@ namespace UI.InGame {
             canChange = false;
             yield return new WaitForSeconds(1f);
             score++;
+            if (score >= maxScore) {
+                PlayerPrefs.SetInt("MaxScore", score);
+                maxScore = score;
+            }
             scoreText.text = score.ToString();
+            inGameCanvas.SetScore(score);
             canChange = true;
         }
 

@@ -18,7 +18,7 @@ namespace Game {
 
         [Header("SpeedParametrs")]
         [SerializeField] private float startSpeed = 1f;
-
+        
         void Awake() {
             Init();
         }
