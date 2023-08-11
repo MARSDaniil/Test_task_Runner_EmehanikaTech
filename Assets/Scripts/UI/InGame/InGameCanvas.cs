@@ -9,10 +9,9 @@ namespace UI.InGame {
         [SerializeField] PauseMenu pauseMenu;
         [SerializeField] PauseButton pauseButton;
 
-        [HideInInspector] public InGameUIManager inGameUIManager;
+        public InGameUIManager inGameUIManager;
         public override void Init(bool isOpen = false) {
             base.Init();
-            inGameUIManager = GetComponentInParent<InGameUIManager>();
 
             SetInGameCanvas();
             SetInitToChild();
@@ -32,13 +31,12 @@ namespace UI.InGame {
 
         public void CloseGame() {
             ClosePauseMenu();
-            gameOverUI.Close();
+            inGameUIManager.FreezeGame();
             inGameUIManager.CloseGame();
         }
 
         private void SetInGameCanvas() {
             pauseButton.inGameCanvas = this;
-            pauseMenu.inGameCanvas = this;
         }
         private void SetInitToChild() {
             score.Init(true);
@@ -48,7 +46,14 @@ namespace UI.InGame {
             pauseMenu.Init();
         }
 
-       
+        public void GameOver() {
+            gameOverUI.Open();
+            pauseButton.Close();
+            score.Close();
+            inGameUIManager.FreezeGame();
+        }
+        
+        
         public void RestartScore() {
             score.StartFire();
         }
@@ -56,5 +61,7 @@ namespace UI.InGame {
 
         public void CloseGameOver() =>  gameOverUI.Close();
 
-}
+        public void MinusScore() => score.MinusFire();
+        public void PlusScore() => score.PlusFire();
+    }
 }

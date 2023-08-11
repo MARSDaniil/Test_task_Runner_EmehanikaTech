@@ -5,16 +5,17 @@ using UnityEngine.UI;
 using UI.Common;
 namespace UI.InGame {
     public class PauseMenu :MenuWindow {
+        [SerializeField] InGameCanvas inGameCanvas;
+
         [SerializeField] Button continueGameButton;
         [SerializeField] Button menuButton;
         [SerializeField] Button restartGameButton;
         [SerializeField] Button settingButton;
 
-        [HideInInspector] public InGameCanvas inGameCanvas;
         public override void Init(bool isOpen = false) {
             base.Init(isOpen);
             continueGameButton.onClick.AddListener(ContinueGame);
-            menuButton.onClick.AddListener(inGameCanvas.CloseGame);
+            menuButton.onClick.AddListener(CloseLevel);
             restartGameButton.onClick.AddListener(RestartLevel);
         }
 
@@ -25,6 +26,10 @@ namespace UI.InGame {
         }
         private void RestartLevel() {
             inGameCanvas.inGameUIManager._inGameManager.RestartLevel();
+        }
+        private void CloseLevel() {
+            RestartLevel();
+            inGameCanvas.CloseGame();
         }
     }
 }

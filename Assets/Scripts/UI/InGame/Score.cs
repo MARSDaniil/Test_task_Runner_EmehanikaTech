@@ -8,8 +8,8 @@ namespace UI.InGame {
         [SerializeField] TMP_Text scoreText;
         private bool canChange = true;
         private int score = 0;
-        static private int startFireScore = 2;
-        static private int maxFire = 5;
+        static private int startFireScore = 3;
+        static private int maxFire = 7;
         public int currentFireScore = 3;
         public List<GameObject> fireList;
         [SerializeField] InGameCanvas inGameCanvas;
@@ -31,6 +31,7 @@ namespace UI.InGame {
         }
 
         public void StartFire() {
+            currentFireScore = startFireScore;
             foreach(GameObject o in fireList) {
                 o.SetActive(false);
             }
@@ -48,19 +49,23 @@ namespace UI.InGame {
                 fireList[currentFireScore].SetActive(false);
             }
             else {
-
+                fireList[currentFireScore].SetActive(false);
+                inGameCanvas.GameOver();
             }
         }
         public void PlusFire() {
             currentFireScore++;
             if (currentFireScore != maxFire) {
-                fireList[currentFireScore].SetActive(true);
+                fireList[currentFireScore-1].SetActive(true);
             }
             else {
+                currentFireScore--;
                 score++;
                 scoreText.text = score.ToString();
             }
         }
         public void ChangeScore(bool value) => canChange = value;
+
+        
     }
 }

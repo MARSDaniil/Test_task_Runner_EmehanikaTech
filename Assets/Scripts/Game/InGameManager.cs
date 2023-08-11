@@ -19,55 +19,29 @@ namespace Game {
         [Header("SpeedParametrs")]
         [SerializeField] private float startSpeed = 1f;
 
-        /*
-        [SerializeField] private float timeBetweenUpSpeed = 10f;
-        [SerializeField] private float stepBetweenSpeedUp = 0.1f;
-        private bool updateSpeed = true;
-        */
         void Awake() {
             Init();
         }
 
         private void Init() {
             _inGameUIManager.Init(this);
-            FreezeGame();
-            /*
-            levelController.Init(this);
-            levelController.GetSpeed(startSpeed);
-            */
-        }
-
-        void Update() {
-        }
-        /*
-        void FindPlayer() {
-            PlayerGameObject = GameObject.FindGameObjectWithTag("Player");
             player = PlayerGameObject.GetComponent<Player>();
-            if (PlayerGameObject == null) Debug.LogError($"{player} doesn't contain Player!");
+            FreezeGame();
         }
-        */
-
-
         public void FreezeGame() {
             Time.timeScale = 0;
         }
         public void UnfreezeGame() {
             Time.timeScale = 1;
         }
-
-        /*
-        IEnumerator SpeedCoroutine() {
-            updateSpeed = false;
-            yield return new WaitForSeconds(timeBetweenUpSpeed);
-            startSpeed += stepBetweenSpeedUp;
-            levelController.GetSpeed(startSpeed);
-            updateSpeed = true;
-        }
-        */
         public void RestartLevel() {
             _inGameUIManager.RestartLevel();
             levelController.SetStartPosition();
         }
+          
+        public void MinusFire() => _inGameUIManager.inGameCanvas.MinusScore();
+        public void PlusFire() => _inGameUIManager.inGameCanvas.PlusScore();
+
     }
 }
 
